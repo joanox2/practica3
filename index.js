@@ -15,10 +15,27 @@ app.get("/", function(req, res){
 
 app.get("/:app_code", function(req, res){
 
+    var id = req.params.app_code;
+    db.query("SELECT count(*) from app WHERE app_code = $1", [id], function(err, data){
+        if( data.rows[0].count == 0){
+            res.sendStatus(404);
+            res.end([
+                "Error 404."
+            ].join('\n'));
+        }
+
+        else{
+            db.query("SELECT * from record where app_code = $1;", [id], function(err, data){
+                res.end(JSON.stringify(data.rows));
+            });
+        }
+    });
 })
 
 app.post("/:app_code", function(req, res){
 
+    var id = req.params.app_code;
+    db.query("INSERT INTO record (app_code, player, score) VALUES ($1, $2, $3);", [id, req.body.name, req.body.score], onData);
 })
 
 app.listen(process.env.PORT || 3000);
