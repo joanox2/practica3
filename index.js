@@ -7,6 +7,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", function(req, res){
 
+    db.query("SELECT * from app;", [], function(err, data){
+        res.end(JSON.stringify(data.rows));
+    });    
 
 })
 
@@ -18,4 +21,4 @@ app.post("/:app_code", function(req, res){
 
 })
 
-http.createServer(app).listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000);

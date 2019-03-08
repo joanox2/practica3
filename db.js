@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg')
 exports.query = function(query, params, callback) {
-    const connectionString = "postgres://haouabtqjeiwlh:455e505b7565e51994ec59771f107191e0aed142662e32ac36e49e1255f8aa3f@ec2-54-83-44-4.compute-1.amazonaws.com:5432/d3i1sem9vmjnbu?ssl=true";
+    const connectionString = "postgres://fuuiedngxdxrrm:6b65fa60b0d5d1f137389314767763c7d60b8db95584f1de1e8b13f6c6c5e969@ec2-54-221-201-212.compute-1.amazonaws.com:5432/d3udgj5n3c3ne3?ssl=true";
     const client = new Client({
         connectionString: connectionString,
     })
